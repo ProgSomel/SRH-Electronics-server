@@ -115,6 +115,12 @@ async function run() {
       }
     });
 
+    app.get('/cart', async(req, res) => {
+      const cursor = cartCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
+
     app.get('/cart/:email', async(req, res) => {
       const email = req.params.email;
       const query = { email: email };
